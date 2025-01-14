@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    environment:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_URL: http://localhost
+    volumes:
+      - ./backend:/var/www
+      - ./backend/vendor:/var/www/vendor
+    ports:
+      - "8000:80"
+
+  frontend:
+    environment:
+      CHOKIDAR_USEPOLLING: true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
